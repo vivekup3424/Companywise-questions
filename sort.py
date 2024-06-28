@@ -1,9 +1,10 @@
 import csv
 
 # Read the CSV file
-input_file = 'google.csv'
-output_file = 'sorted_google.csv'
-
+print("Enter the csv file-path to sort by frequency:")
+input_file = input()
+print("Enter the output name for the sorted file:")
+output_file = input()
 with open(input_file, mode='r') as file:
     reader = csv.DictReader(file)
     problems = list(reader)
@@ -13,7 +14,7 @@ def clean_frequency(frequency):
     return float(frequency.replace('%', '').replace(';', ''))
 
 # Sort the problems by "Frequency %" in decreasing order
-problems_sorted = sorted(problems, key=lambda x: clean_frequency(x['Frequency %']), reverse=True)
+problems_sorted = sorted(problems, key=lambda x: clean_frequency(x['Frequency']), reverse=True)
 
 # Write the sorted data to a new CSV file
 with open(output_file, mode='w', newline='') as file:
